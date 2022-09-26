@@ -21,3 +21,7 @@ jobs:
     - name: Setup Discovery server Container
       working-directory: ./
       run: mvn spring-boot:build-image -DskipTests
+      
+    - name: Push to docker hub
+      run: docker /tag ${{DOCKER_USERNAME}}/psi-discovery-server:0.0.1-SNAPSHOT ${{DOCKER_USERNAME}}/psi-discovery-server:${{github.run_id}}
+          docker push ${{DOCKER_USERNAME}}/psi-discovery-server:${{github.run_id}}
