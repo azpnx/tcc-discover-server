@@ -1,4 +1,3 @@
-
 on: [push]
 
 jobs:
@@ -22,7 +21,14 @@ jobs:
       working-directory: ./
       run: mvn spring-boot:build-image -DskipTests
       
-    - name: Push to docker hub
+    - name: tag docker image
       run:
-        docker tag library/psi-discovery-server:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/psi-discovery-server:${{github.run_id}}
+        docker tag gasbiru/psi-discovery-server:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/psi-discovery-server:${{github.run_id}}
+        
+        docker tag gasbiru/psi-discovery-server:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/psi-discovery-server:latest
+      
+    - name : Push to docker
+      run:
         docker push ${{secrets.DOCKER_USERNAME}}/psi-discovery-server:${{github.run_id}}
+        
+        docker push ${{secrets.DOCKER_USERNAME}}/psi-discovery-server:latest
