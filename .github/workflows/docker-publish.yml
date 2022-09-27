@@ -25,5 +25,7 @@ jobs:
     - name: Push to docker hub
       run:
         docker tag library/psi-discovery-server:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/psi-discovery-server:${{github.run_id}}
+        docker tag library/psi-discovery-server:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/psi-discovery-server:latest
         
         docker push ${{secrets.DOCKER_USERNAME}}/psi-discovery-server:${{github.run_id}}
+        docker push ${{secrets.DOCKER_USERNAME}}/psi-discovery-server:latest
