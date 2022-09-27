@@ -23,5 +23,6 @@ jobs:
       run: mvn spring-boot:build-image -DskipTests
       
     - name: Push to docker hub
-      run: docker tag ${{secrets.DOCKER_USERNAME}}/psi-discovery-server:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/psi-discovery-server:${{github.run_id}}
-          docker push ${{secrets.DOCKER_USERNAME}}/psi-discovery-server:${{github.run_id}}
+      run:
+        docker tag ${{secrets.DOCKER_USERNAME}}/psi-discovery-server:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/psi-discovery-server:${{github.run_id}}
+        docker push ${{secrets.DOCKER_USERNAME}}/psi-discovery-server:${{github.run_id}}
