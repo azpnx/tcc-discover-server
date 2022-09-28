@@ -1,11 +1,11 @@
 server:
   port: 8671
-spring:
-  application:
-    name: discover-server
+
 eureka:
   instance:
-    preferIpAddress: true
+    hostname: "${HOSTNAME}.eureka"
   client:
+    register-with-eureka: false
+    fetch-registry: false
     serviceUrl:
       defaultZone: ${EUREKA_SERVER_ADDRESS}
