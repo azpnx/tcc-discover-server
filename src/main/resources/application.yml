@@ -4,8 +4,8 @@ spring:
   application:
     name: discover-server
 eureka:
+  instance:
+    hostname: "${HOSTNAME}.eureka"
   client:
-    registerWithEureka: false
-    fetchRegistry: false
-    service-url:
-      defaultZone: http://localhost:8671/eureka
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_ADDRESS}
